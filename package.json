@@ -8,20 +8,24 @@
     "start": "webpack serve --mode=development",
     "test": "jest"
   },
-  "keywords": ["popover", "javascript", "webpack"],
+  "keywords": [
+    "popover",
+    "javascript",
+    "webpack"
+  ],
   "author": "UrijMexa",
   "license": "MIT",
   "devDependencies": {
-    "css-loader": "^6.8.1",
-    "html-webpack-plugin": "^5.5.3",
-    "jest": "^29.6.2",
-    "jest-environment-jsdom": "^29.6.2",
-    "mini-css-extract-plugin": "^2.7.6",
-    "puppeteer": "^21.0.3",
-    "style-loader": "^3.3.3",
-    "webpack": "^5.88.2",
+    "css-loader": "^6.11.0",
+    "html-webpack-plugin": "^5.6.4",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "mini-css-extract-plugin": "^2.9.4",
+    "style-loader": "^3.3.4",
+    "webpack": "^5.101.3",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1"
+    "webpack-dev-server": "^4.15.2"
   },
   "jest": {
     "testEnvironment": "jsdom",
