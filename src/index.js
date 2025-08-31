@@ -1,6 +1,6 @@
 import './style.css';
 
-class PopoverWidget {
+export class PopoverWidget {
     constructor() {
         this.popovers = [];
     }
@@ -22,6 +22,12 @@ class PopoverWidget {
         const title = element.dataset.title;
         const content = element.dataset.content;
 
+        // Удаляем существующий popover если есть
+        const existingPopover = document.querySelector('.popover');
+        if (existingPopover) {
+            existingPopover.remove();
+        }
+
         const popover = document.createElement('div');
         popover.classList.add('popover');
         popover.innerHTML = `
@@ -33,7 +39,8 @@ class PopoverWidget {
         document.body.appendChild(popover);
 
         const rect = element.getBoundingClientRect();
-        const top = rect.top - popover.offsetHeight - 10;
+        const popoverHeight = popover.offsetHeight;
+        const top = rect.top - popoverHeight - 10;
         const left = rect.left + (element.offsetWidth - popover.offsetWidth) / 2;
 
         popover.style.top = `${top}px`;

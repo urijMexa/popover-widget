@@ -2,8 +2,7 @@
  * @jest-environment jsdom
  */
 
-const fs = require('fs');
-const path = require('path');
+import { PopoverWidget } from '../src/index.js';
 
 describe('PopoverWidget', () => {
     let popoverWidget;
@@ -17,9 +16,6 @@ describe('PopoverWidget', () => {
     `;
 
         button = document.querySelector('.btn');
-
-        // Импортируем класс PopoverWidget
-        const PopoverWidget = require('../src/index.js').default;
         popoverWidget = new PopoverWidget();
         popoverWidget.init();
     });
