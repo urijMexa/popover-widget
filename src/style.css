@@ -33,27 +33,25 @@ body {
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
-.popover-wrapper {
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-bottom: 10px;
-    z-index: 1000;
-    display: none;
-}
-
-.popover-wrapper.show {
-    display: block;
-}
-
 .popover {
+    position: fixed;
     width: 276px;
     background: #fff;
     border: 1px solid rgba(0,0,0,0.2);
     border-radius: 8px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    z-index: 1000;
     font-family: inherit;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+}
+
+.popover.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
 .popover-header {
