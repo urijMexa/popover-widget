@@ -19,14 +19,11 @@ export class PopoverWidget {
     }
 
     showPopover(element) {
+        // Сначала скрываем все открытые popover
+        this.hideAllPopovers();
+
         const title = element.dataset.title;
         const content = element.dataset.content;
-
-        // Удаляем существующий popover если есть
-        const existingPopover = document.querySelector('.popover');
-        if (existingPopover) {
-            existingPopover.remove();
-        }
 
         const popover = document.createElement('div');
         popover.classList.add('popover');
@@ -38,13 +35,17 @@ export class PopoverWidget {
 
         document.body.appendChild(popover);
 
+        // Позиционируем popover
         const rect = element.getBoundingClientRect();
+        const popoverWidth = popover.offsetWidth;
         const popoverHeight = popover.offsetHeight;
-        const top = rect.top - popoverHeight - 10;
-        const left = rect.left + (element.offsetWidth - popover.offsetWidth) / 2;
 
-        popover.style.top = `${top}px`;
-        popover.style.left = `${left}px`;
+        // Позиция сверху от элемента
+        const top = window.scrollY + rect.top - popoverHeight - 10;
+        const left = window.scrollX + rect.left + (element.offsetWidth - popoverWidth) / 2;
+
+        popover.style.top = `${Math.max(0, top)}px`;
+        popover.style.left = `${Math.max(0, left)}px`;
         popover.style.display = 'block';
 
         this.popovers.push(element);
@@ -55,10 +56,13 @@ export class PopoverWidget {
         if (index > -1) {
             this.popovers.splice(index, 1);
         }
-        const popover = document.querySelector('.popover');
-        if (popover) {
-            popover.remove();
-        }
+        this.hideAllPopovers();
+    }
+
+    hideAllPopovers() {
+        const popovers = document.querySelectorAll('.popover');
+        popovers.forEach(popover => popover.remove());
+        this.popovers = [];
     }
 }
 
